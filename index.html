@@ -528,20 +528,117 @@ The Legendary MMORPG Returns
 
     <script src="app.js"></script>
 
-        <script>
-    document.addEventListener('contextmenu', function (e) {
+   <!-- EXYNOS Security Popup -->
+<div id="exynos-popup">
+    <div class="popup-box">
+
+        <h2 style="margin:0;">
+    🛡️ <span class="emoji">😜</span>
+</h2>
+
+        <h3 style="color:#FFD700;">
+            EXYNOS SECURITY
+        </h3>
+
+        <p>
+            Mau Ngapain Bro? 😜<br>
+            Jangan Nakal Ya.<br>No No Ya.<br>
+
+        </p>
+
+        <button id="popup-ok">OK</button>
+
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const popup = document.getElementById("exynos-popup");
+    const okBtn = document.getElementById("popup-ok");
+
+    const popupBox = document.querySelector(".popup-box");
+
+     let moveCount = 0;
+
+
+
+    function showPopup() {
+        popup.style.display = "flex";
+    }
+
+function closePopup() {
+    popup.style.display = "none";
+
+    exynosCatch = 0;
+
+    okBtn.innerText = "OK";
+    okBtn.style.left = "0px";
+    okBtn.style.top = "0px";
+}
+
+moveCount = 0;
+popupBox.style.transform = "translate(0,0)";
+okBtn.innerText = "OK";
+
+
+okBtn.addEventListener("mouseenter", function(){
+
+    if(moveCount < 6){
+
+        const x = Math.random()*300 - 150;
+        const y = Math.random()*180 - 90;
+
+        popupBox.style.transform = `translate(${x}px, ${y}px)`;
+
+        const text = [
+            "🤣 WKWKWK",
+            "😜 Kejar Lagi",
+            "😂 Hampir",
+            "🤭 Hayooo",
+            "😏 Dikit Lagi",
+            "😅 Yaudah..."
+        ];
+
+        okBtn.innerText = text[moveCount];
+
+        moveCount++;
+
+    }else{
+
+        popupBox.style.transform = "translate(0,0)";
+        okBtn.innerText = "OK";
+
+    }
+
+});
+
+okBtn.addEventListener("click", closePopup);
+
+    // Klik kanan
+    document.addEventListener("contextmenu", function(e){
         e.preventDefault();
+        showPopup();
     });
 
-    document.addEventListener('keydown', function (e) {
-        if (
-            e.key === 'F12' ||
-            (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) ||
-            (e.ctrlKey && ['U', 'S'].includes(e.key.toUpperCase()))
-        ) {
+    // Shortcut
+    document.addEventListener("keydown", function(e){
+
+        const key = e.key.toUpperCase();
+
+        if(
+            e.key === "F12" ||
+            (e.ctrlKey && e.shiftKey && ["I","J","C"].includes(key)) ||
+            (e.ctrlKey && ["U","S","A","C","X","V"].includes(key))
+        ){
             e.preventDefault();
+            showPopup();
         }
+
     });
-    </script>
+
+});
+</script>
+
 </body>
 </html>
